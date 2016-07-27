@@ -1,0 +1,44 @@
+
+
+
+
+
+
+1. UI部分
+
+
+2. 性能调优
+
+
+
+内存管理
+  ARC    MRC
+  循环引用解决  block
+  __weak __strong __assign
+  __bridge
+	weak strong assign
+
+	如果是你自己实现一套内存管理机制的话怎么做； 使用map数据结构
+
+
+
+多线程部分
+  信号量机制
+
+
+
+MVVM 是什么：
+
+优点：
+
+缺点：
+  
+
+
+
+
+
+
+
+
+
