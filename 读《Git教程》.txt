@@ -1,0 +1,72 @@
+
+
+1. Git简介
+	集中式 VS 分布式
+	1. 必须联网
+	2. 安全性低，一旦服务器出问题就无法工作了
+	3. 分支管理
+
+	
+2. 安装Git
+	安装Xcode
+
+3. 创建版本库
+
+
+	$ mkdir learngit
+	$ cd learngit
+	$ pwd
+
+
+	初始化一个Git仓库，使用git init命令。
+
+	添加文件到Git仓库，分两步：
+		第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+		第二步，使用命令git commit，完成
+
+
+4. 时光机穿梭
+
+	要随时掌握工作区的状态，使用git status命令。
+	如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+	
+版本回退
+	HEAD指向的版本就是当前版本， 上一个版本就是HEAD^，前10个版本HEAD~10。因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+
+	穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。  --pretty=oneline
+
+	要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+	
+工作区和暂存区
+	
+
+管理修改
+
+
+撤销修改
+
+删除文件
+
+
+5. 远程仓库
+	“有了远程仓库，妈妈再也不用担心我的硬盘了。”——Git点读机
+
+	$ ssh-keygen -t rsa -C "youremail@example.com"
+
+
+添加远程仓库
+	要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+	关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+	此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+	分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
+
+
+从远程仓库克隆
+
+	要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。
+
+	Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
