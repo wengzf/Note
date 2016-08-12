@@ -21,7 +21,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    self.view addSubview:<#(nonnull UIView *)#>
+    FSCurveButton *btn = [[FSCurveButton alloc] initWithFrame:CGRectMake(100, 100, 100, 162) curveSize:kFSCurveButtonSizeRight];
+    
+//    FSCurveButton *btn = [[FSCurveButton alloc] initWithFrame:CGRectMake(100, 100, 100, 162) curveSize:kFSCurveButtonSizeLeft];
+    
+    [self.view addSubview:btn];
 }
 
 - (void)didReceiveMemoryWarning {
