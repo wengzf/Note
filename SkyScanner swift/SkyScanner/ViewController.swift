@@ -13,8 +13,8 @@ import UIKit
 class ViewController: UIViewController {
     var curImage = UIImage()
     
-    let imgView1 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
-    let imgView2 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
+    var imgView1 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
+    var imgView2 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
     
     var curveButtons : [FSCurveButton] = Array()
     
@@ -28,7 +28,6 @@ class ViewController: UIViewController {
     var curveBtn7 : FSCurveButton!
     
     var count = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,29 +43,41 @@ class ViewController: UIViewController {
         self.view.addSubview(imgView1)
         
         // 更换背景定时器
-        NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
         
         // 添加按钮
-        // 创建cgpoint数组
         self.curveButtonInit()
         
+        // 添加动画
     }
+    
     
     func timerAction()
     {
         count += 1
+        count &= 7
         let str = "\(count).jpg"
     
-        curImage = UIImage.init(named: str)!
-        imgView1.image = curImage
-        imgView1.alpha = 0
-        UIView.animateWithDuration(1, delay: 0, options: .CurveLinear, animations: { 
-            imgView1.alpha = 1
-            imgView2.alpha = 0
-            }) { (<#Bool#>) in
-                <#code#>
-        }
-        imgView.image =
+//        curImage = UIImage.init(named: str)!
+//
+//        imgView2 .removeFromSuperview()
+//        self.view .insertSubview(imgView2, aboveSubview: imgView1)
+//        
+//        imgView2.alpha = 0
+//        imgView2.image = curImage
+//        
+//        UIView.animateWithDuration(5, delay: 0, options: .CurveLinear, animations: {
+//            self.imgView1.alpha = 0.3
+//            self.imgView2.alpha = 1
+//        }) { (flag : Bool) in
+//            self.imgView1.image = self.curImage
+//            
+//            let tmp = self.imgView2
+//            self.imgView2 = self.imgView1
+//            self.imgView1 = tmp
+//        }
+        
+        self.startAnimation()
     }
     
     func curveButtonInit()
@@ -120,7 +131,58 @@ class ViewController: UIViewController {
         self.curveBtn6.left = self.curveBtn0.left
         self.curveBtn6.fillColor = UIColor.init(white: 1, alpha:0.7 )
         self.view.addSubview(self.curveBtn6)
+    }
+    
+    func startAnimation(){
+        var animationDelay = 0.0
         
+        self.curveBtn0.hidden = true
+        self.curveBtn1.hidden = true
+        self.curveBtn2.hidden = true
+        self.curveBtn3.hidden = true
+        self.curveBtn4.hidden = true
+        self.curveBtn5.hidden = true
+        self.curveBtn6.hidden = true
+        
+        self.curveBtn0.bouceAnimation(0)
+
+        
+        animationDelay += 0.23
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn1.bouceAnimation(0)
+        }
+        
+        animationDelay += 0.18
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn3.bouceAnimation(0)
+        }
+        
+        animationDelay += 0.07
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn2.bouceAnimation(0)
+        }
+        
+        animationDelay += 0.03
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn4.bouceAnimation(0)
+        }
+        
+        animationDelay += 0.04
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn5.bouceAnimation(0)
+        }
+        
+        animationDelay += 0.17
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            
+            self.curveBtn6.bouceAnimation(0)
+        }
+
     }
 
     

@@ -1,0 +1,57 @@
+
+1. designated 提供了所有参数的初始化方法
+   secondary 另外的初始化方法
+
+2. objc_setAssociatedObject
+   objc_getAssociatedObject
+
+
+8. runtime如何实现weak属性
+
+9. @property有那些属性关键字
+
+	1. 原子性 nonatomic
+	2. 读写属性 readwrite readonly
+	3. 内存管理语义 assign strong weak unsafe_unretained copy
+	4. 方法名 getter=<name> setter=<name>
+
+	@property(nonatomic, strong, getter=p_initBy, setter=setP_initBy:)NSString *initBy;
+
+
+10. weak属性需要在dealloc中设置nil么？
+	ARC环境会自动帮我们设置
+
+11. @synthesize 和 @dynamic 分别有什么作用？
+	都没写，默认 @synthesize var = _var;
+	@synthesize 没有手动实现setter、getter，编译时自动添加
+	
+	编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定
+	@dynamic 属性的setter和getter方法由用户自己实现
+
+12. ARC下，不显示指定任何属性关键字时，默认是atomic，readwrite，assign/strong
+
+13. NSString,NSArray,NSDictionary经常用copy关键字，避免对其复制了可变类型。
+	mutableCopy 内容复制  immutable操作 copy，指针复制
+
+14. @synthesize合成实例变量的规则是什么？
+	实例变量 = 成员变量 = ivar
+
+	1. 如果指定了成员变量的名称,会生成一个指定的名称的成员变量,
+
+	2. 如果这个成员已经存在了就不再生成了.
+
+	3. 如果是 @synthesize foo; 还会生成一个名称为foo的成员变量，也就是说：
+
+		如果没有指定成员变量的名称会自动生成一个属性同名的成员变量,
+	4. 如果是 @synthesize foo = _foo; 就不会生成成员变量了.
+
+15. 在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
+
+	什么时候不会自动合成
+		1. 同时重写了 setter 和 getter 时
+		2. 重写了只读属性的 getter 时
+		3. 使用了 @dynamic 时
+		4. 在 @protocol 中定义的所有属性
+		5. 在 category 中定义的所有属性
+		6. 重载的属性
+	

@@ -94,11 +94,28 @@ extension UIView{
             self.frame = frame;
         }
     }
-    
-    
-    
 }
 
+extension UIView{
+    func bouceAnimation(delay:double_t){
+
+        self.transform = CGAffineTransformMakeScale(0.164, 0.164)
+        UIView.animateWithDuration(0.13, delay: delay, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.hidden = false
+            self.transform =  CGAffineTransformMakeScale(1.164, 1.164)
+        }) { (flag:Bool) in
+            UIView.animateWithDuration(0.05, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.transform =  CGAffineTransformMakeScale(0.91, 0.91)
+            }) { (flag:Bool) in
+                UIView.animateWithDuration(0.05, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.transform =  CGAffineTransformIdentity
+                }) { (flag:Bool) in
+                    
+                }
+            }
+        }
+    }
+}
 
 class FSCurveButton: UIButton {
 
