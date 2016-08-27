@@ -215,7 +215,7 @@ const int mapCol = 8;
 - (void)outputAnsWithArr:(NSArray *)arr
 {
     NSMutableString *ans = [NSMutableString string];
-    NSArray *strArr = @[@"左 ", @"上 ", @"右", @"下"];
+    NSArray *strArr = @[@"左 ", @"上 ", @"右 ", @"下 "];
     for (NSNumber *num in arr) {
         [ans appendString:strArr[[num intValue]]];
     }

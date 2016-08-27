@@ -36,7 +36,31 @@
 
 
 
+3. 第三方框架仿写
 
+	朋友圈相册浏览
+	SDWebImage
+	SVProgressHUD
+	MJRefresh
+	FSJSonModel		字符串转成字典
+	FSModel			字典转换成model
+	
+	
+
+
+
+
+Crash定位技术 友盟
+ 	发版本时，版本号需要注意什么 是否改个build就可以了
+听云 app性能
+
+
+
+
+	
+
+多线程 PV操作
+	
 
 
 

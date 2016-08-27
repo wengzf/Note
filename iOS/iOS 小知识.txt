@@ -6,6 +6,10 @@
    objc_getAssociatedObject
 
 
+   objc_property_t
+   class_copyPropertyList
+
+
 8. runtime如何实现weak属性
 
 9. @property有那些属性关键字
