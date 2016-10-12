@@ -9,7 +9,9 @@
 
 2. 性能调优
 
+3. iOS自动化测试
 
+4. 
 
 内存管理
   ARC    MRC
@@ -22,17 +24,120 @@
 
 
 
-多线程部分
-  信号量机制
-
-
 
 MVVM 是什么：
+	ViewModel
+
+
 
 优点：
 
 缺点：
-  
+ 
+
+
+多线程部分
+  信号量机制
+
+
+GCD:
+	
+GROUP:
+dispatch_group_t
+dispatch_group_create(void);
+
+void
+dispatch_group_async(dispatch_group_t group,
+	dispatch_queue_t queue,
+	dispatch_block_t block);
+
+long
+dispatch_group_wait(dispatch_group_t group, dispatch_time_t timeout);
+
+
+void
+dispatch_group_notify(dispatch_group_t group,
+	dispatch_queue_t queue,
+	dispatch_block_t block);
+
+
+队列管理：
+
+dispatch_queue_t dispatch_get_global_queue(long identifier, unsigned long flags);
+	dispatch_suspend(), dispatch_resume(), dispatch_set_context()对这个函数返回的设置无效
+
+
+dispatch_queue_t
+dispatch_queue_create(const char *label, dispatch_queue_attr_t attr);
+
+	 DISPATCH_QUEUE_SERIAL, DISPATCH_QUEUE_CONCURRENT
+
+
+const char *
+dispatch_queue_get_label(dispatch_queue_t queue);
+
+	DISPATCH_CURRENT_QUEUE_LABEL
+
+
+
+
+void
+dispatch_after(dispatch_time_t when,
+	dispatch_queue_t queue,
+	dispatch_block_t block);
+
+	DISPATCH_TIME_NOW
+
+
+
+void
+dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block);
+
+
+信号量：
+
+dispatch_semaphore_t
+dispatch_semaphore_create(long value);
+
+
+
+long
+dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout);
+ * When to timeout (see dispatch_time). As a convenience, there are the
+ * DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
+
+
+long
+dispatch_semaphore_signal(dispatch_semaphore_t dsema);
+
+
+时间：
+
+dispatch_time_t
+dispatch_time(dispatch_time_t when, int64_t delta);
+
+
+Once：
+void
+dispatch_once(dispatch_once_t *predicate, dispatch_block_t block);
+
+
+OBJECT:
+
+typedef void (^dispatch_block_t)(void);
+
+void
+dispatch_suspend(dispatch_object_t object);
+
+void
+dispatch_resume(dispatch_object_t object);
+
+long
+dispatch_wait(void *object, dispatch_time_t timeout);
+
+
+
+
 
 
 

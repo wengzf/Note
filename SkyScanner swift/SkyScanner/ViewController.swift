@@ -13,8 +13,8 @@ import UIKit
 class ViewController: UIViewController {
     var curImage = UIImage()
     
-    var imgView1 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
-    var imgView2 = UIImageView.init(frame: UIScreen.mainScreen().bounds)
+    var imgView1 = UIImageView.init(frame: UIScreen.main.bounds)
+    var imgView2 = UIImageView.init(frame: UIScreen.main.bounds)
     
     var curveButtons : [FSCurveButton] = Array()
     
@@ -42,11 +42,13 @@ class ViewController: UIViewController {
         imgView1.image = curImage
         self.view.addSubview(imgView1)
         
-        // 更换背景定时器
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
-        
         // 添加按钮
         self.curveButtonInit()
+        
+        // 更换背景定时器
+        let timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
+        timer.fire()
+
         
         // 添加动画
     }
@@ -82,13 +84,13 @@ class ViewController: UIViewController {
     
     func curveButtonInit()
     {
-        self.curveBtn0 = FSCurveButton.init(frame: CGRectMake(0, 0, 100, 162), curveType: FSCurveButtonSizeType.Right)
-        self.curveBtn0.origin = CGPointMake(90,150)
+        self.curveBtn0 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 162), curveType: FSCurveButtonSizeType.right)
+        self.curveBtn0.origin = CGPoint(x: 90,y: 150)
         self.curveBtn0.fillColor = UIColor.init(white: 1, alpha: 1)
         self.view.addSubview(self.curveBtn0)
         
         
-        self.curveBtn1 = FSCurveButton.init(frame: CGRectMake(0, 0, 74, 128), curveType: FSCurveButtonSizeType.Left)
+        self.curveBtn1 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 74, height: 128), curveType: FSCurveButtonSizeType.left)
         self.curveBtn1.top = self.curveBtn0.bottom
         self.curveBtn1.right = self.curveBtn0.right
         
@@ -96,15 +98,15 @@ class ViewController: UIViewController {
         self.view.addSubview(self.curveBtn1)
         
         
-        self.curveBtn2 = FSCurveButton.init(frame: CGRectMake(0, 0, 74, 128 ), curveType: FSCurveButtonSizeType.Left)
+        self.curveBtn2 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 74, height: 128 ), curveType: FSCurveButtonSizeType.left)
         self.curveBtn2.left = self.curveBtn0.right
         self.curveBtn2.bottom = self.curveBtn0.bottom
         self.curveBtn2.fillColor = UIColor.init(white: 1, alpha: 0.9)
         self.view.addSubview(self.curveBtn2)
         
         
-        self.curveBtn3 = FSCurveButton.init(frame: CGRectMake(0, 0, 62, 108), curveType:
-            FSCurveButtonSizeType.Right)
+        self.curveBtn3 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 62, height: 108), curveType:
+            FSCurveButtonSizeType.right)
         self.curveBtn3.top = self.curveBtn0.bottom
         self.curveBtn3.left = self.curveBtn0.right
         self.curveBtn3.fillColor = UIColor.init(white: 1, alpha:0.85)
@@ -112,21 +114,21 @@ class ViewController: UIViewController {
         
         
         
-        self.curveBtn4 = FSCurveButton.init(frame: CGRectMake(0, 0, 45, 64), curveType: FSCurveButtonSizeType.Left)
+        self.curveBtn4 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 45, height: 64), curveType: FSCurveButtonSizeType.left)
         self.curveBtn4.top = self.curveBtn0.top
         self.curveBtn4.right = self.curveBtn0.left
         self.curveBtn4.fillColor = UIColor.init(white: 1, alpha:0.8 )
         self.view.addSubview(self.curveBtn4)
         
         
-        self.curveBtn5 = FSCurveButton.init(frame: CGRectMake(0, 0, 36, 50), curveType: FSCurveButtonSizeType.Right)
+        self.curveBtn5 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 36, height: 50), curveType: FSCurveButtonSizeType.right)
         self.curveBtn5.bottom = self.curveBtn0.top
         self.curveBtn5.right = self.curveBtn0.left
         self.curveBtn5.fillColor = UIColor.init(white: 1, alpha:0.75 )
         self.view.addSubview(self.curveBtn5)
         
         
-        self.curveBtn6 = FSCurveButton.init(frame: CGRectMake(0, 0, 52, 25), curveType: FSCurveButtonSizeType.Left)
+        self.curveBtn6 = FSCurveButton.init(frame: CGRect(x: 0, y: 0, width: 52, height: 25), curveType: FSCurveButtonSizeType.left)
         self.curveBtn6.bottom = self.curveBtn0.top
         self.curveBtn6.left = self.curveBtn0.left
         self.curveBtn6.fillColor = UIColor.init(white: 1, alpha:0.7 )
@@ -136,52 +138,52 @@ class ViewController: UIViewController {
     func startAnimation(){
         var animationDelay = 0.0
         
-        self.curveBtn0.hidden = true
-        self.curveBtn1.hidden = true
-        self.curveBtn2.hidden = true
-        self.curveBtn3.hidden = true
-        self.curveBtn4.hidden = true
-        self.curveBtn5.hidden = true
-        self.curveBtn6.hidden = true
+        self.curveBtn0.isHidden = true
+        self.curveBtn1.isHidden = true
+        self.curveBtn2.isHidden = true
+        self.curveBtn3.isHidden = true
+        self.curveBtn4.isHidden = true
+        self.curveBtn5.alpha = 0
+        self.curveBtn6.alpha = 0
         
         self.curveBtn0.bouceAnimation(0)
 
         
-        animationDelay += 0.23
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        animationDelay += 0.13
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             
             self.curveBtn1.bouceAnimation(0)
         }
         
-        animationDelay += 0.18
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        animationDelay += 0.07
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             
             self.curveBtn3.bouceAnimation(0)
         }
         
-        animationDelay += 0.07
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        animationDelay += 0.03
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             
             self.curveBtn2.bouceAnimation(0)
         }
         
-        animationDelay += 0.03
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        animationDelay += 0.04
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             
             self.curveBtn4.bouceAnimation(0)
         }
         
-        animationDelay += 0.04
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            
-            self.curveBtn5.bouceAnimation(0)
-        }
+        animationDelay += 0.18
+        UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
+            self.curveBtn5.alpha = 1
+            }, completion: nil)
         
-        animationDelay += 0.17
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationDelay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            
-            self.curveBtn6.bouceAnimation(0)
-        }
+        
+        animationDelay += 0.12
+        
+        UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
+            self.curveBtn6.alpha = 1
+            }, completion: nil)
 
     }
 

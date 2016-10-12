@@ -9,132 +9,30 @@
 import UIKit
 
 enum FSCurveButtonSizeType {
-    case Left,Right
+    case left,right
 }
 
-extension UIView{
-    var left : CGFloat{
-        get{
-            return self.frame.origin.x
-        }
-        set{
-            var frame = self.frame
-            frame.origin.x = newValue
-            self.frame = frame;
-        }
-    }
-    var right : CGFloat{
-        get{
-           return self.frame.origin.x + self.width
-        }
-        set{
-            var frame = self.frame
-            frame.origin.x = newValue - self.width
-            self.frame = frame;
-        }
-    }
-    var top : CGFloat{
-        get{
-            return self.frame.origin.y
-        }
-        set{
-            var frame = self.frame
-            frame.origin.y = newValue
-            self.frame = frame;
-        }
-    }
-    var bottom : CGFloat{
-        get{
-            return self.frame.origin.y + self.frame.size.height
-        }
-        set{
-            var frame = self.frame
-            frame.origin.y = newValue - self.height
-            self.frame = frame;
-        }
-    }
-    var width : CGFloat{
-        get{
-            return self.frame.size.width
-        }
-        set{
-            var frame = self.frame
-            frame.size.width = newValue
-            self.frame = frame;
-        }
-        
-    }
-    var height : CGFloat{
-        get{
-            return self.frame.size.height
-        }
-        set{
-            var frame = self.frame
-            frame.size.height = newValue
-            self.frame = frame;
-        }
-    }
-    var origin : CGPoint{
-        get{
-            return self.frame.origin
-        }
-        set{
-            var frame = self.frame
-            frame.origin = newValue
-            self.frame = frame;
-        }
-    }
-    var centerX : CGFloat{
-        get{
-            return self.left + self.width/2
-        }
-        set{
-            var frame = self.frame
-            frame.origin.x = newValue - self.width/2
-            self.frame = frame;
-        }
-    }
-}
-
-extension UIView{
-    func bouceAnimation(delay:double_t){
-
-        self.transform = CGAffineTransformMakeScale(0.164, 0.164)
-        UIView.animateWithDuration(0.13, delay: delay, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.hidden = false
-            self.transform =  CGAffineTransformMakeScale(1.164, 1.164)
-        }) { (flag:Bool) in
-            UIView.animateWithDuration(0.05, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                self.transform =  CGAffineTransformMakeScale(0.91, 0.91)
-            }) { (flag:Bool) in
-                UIView.animateWithDuration(0.05, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    self.transform =  CGAffineTransformIdentity
-                }) { (flag:Bool) in
-                    
-                }
-            }
-        }
-    }
-}
 
 class FSCurveButton: UIButton {
 
-    var curveButtonSize = FSCurveButtonSizeType.Left;
+    var curveButtonSize = FSCurveButtonSizeType.left;
     var fillColor : UIColor {
         get{
-            return UIColor.init(CGColor: shapeLayer.fillColor!)
+            return UIColor.init(cgColor: shapeLayer.fillColor!)
         }
         set{
-            shapeLayer.fillColor = newValue.CGColor
+            shapeLayer.fillColor = newValue.cgColor
+            
+            
         }
     }
     var shapeLayer = CAShapeLayer()
-    
+    /Users/wengzhifang/Desktop/Note/SkyScanner swift/SkyScanner/FSCurveButton.swift:48:39: Nil is not compatible with expected argument type 'UnsafePointer<CGAffineTransform>'/Users/wengzhifang/Desktop/Note/SkyScanner swift/SkyScanner/FSCurveButton.swift:48:39: Nil is not compatible with expected argument type 'UnsafePointer<CGAffineTransform>'
     
     init(frame:CGRect,curveType:FSCurveButtonSizeType) {
         super.init(frame: frame)
         
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
         let width = frame.size.width
         let height = frame.size.height
@@ -142,9 +40,12 @@ class FSCurveButton: UIButton {
         var radius = width>height ? height : width
         radius *= 0.3;
         
-        if curveType == FSCurveButtonSizeType.Left {
+        if curveType == FSCurveButtonSizeType.left {
+        
+            CGPathMoveToPoint(path, nil)
             
-            CGPathMoveToPoint(path, nil, 0, height);
+            
+            CGPathMoveToPoint(path, Nil, 0, height);
             
             CGPathAddArcToPoint(path, nil, 0, 0, width, 0, radius);
             
@@ -169,7 +70,7 @@ class FSCurveButton: UIButton {
         
         shapeLayer.path = path;
         
-        shapeLayer.fillColor = UIColor.redColor().CGColor;
+        shapeLayer.fillColor = UIColor.red.cgColor;
         
         self.layer.addSublayer(shapeLayer);
         

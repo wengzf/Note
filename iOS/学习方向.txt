@@ -38,6 +38,7 @@
 
 3. 第三方框架仿写
 
+   a):
 	朋友圈相册浏览
 	SDWebImage
 	SVProgressHUD
@@ -45,7 +46,11 @@
 	FSJSonModel		字符串转成字典
 	FSModel			字典转换成model
 	
+   b): 
+	制作对应的自己仿写的框架成为framework和静态库文件
+
 	
+
 
 
 
