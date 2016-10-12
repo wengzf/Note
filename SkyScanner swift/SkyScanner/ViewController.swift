@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         self.curveButtonInit()
         
         // 更换背景定时器
-        let timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
         timer.fire()
 
         
@@ -149,40 +149,41 @@ class ViewController: UIViewController {
         self.curveBtn0.bouceAnimation(0)
 
         
-        animationDelay += 0.13
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        
+        animationDelay += 0.12
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn1.bouceAnimation(0)
         }
         
         animationDelay += 0.07
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn3.bouceAnimation(0)
         }
         
         animationDelay += 0.03
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn2.bouceAnimation(0)
         }
         
         animationDelay += 0.04
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(animationDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn4.bouceAnimation(0)
         }
         
         animationDelay += 0.18
         UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
-            self.curveBtn5.alpha = 1
+            self.curveBtn5.alpha = 0.7
             }, completion: nil)
         
         
-        animationDelay += 0.12
+        animationDelay += 0.10
         
         UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
-            self.curveBtn6.alpha = 1
+            self.curveBtn6.alpha = 0.8
             }, completion: nil)
 
     }

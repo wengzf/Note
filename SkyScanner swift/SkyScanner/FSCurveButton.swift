@@ -27,7 +27,6 @@ class FSCurveButton: UIButton {
         }
     }
     var shapeLayer = CAShapeLayer()
-    /Users/wengzhifang/Desktop/Note/SkyScanner swift/SkyScanner/FSCurveButton.swift:48:39: Nil is not compatible with expected argument type 'UnsafePointer<CGAffineTransform>'/Users/wengzhifang/Desktop/Note/SkyScanner swift/SkyScanner/FSCurveButton.swift:48:39: Nil is not compatible with expected argument type 'UnsafePointer<CGAffineTransform>'
     
     init(frame:CGRect,curveType:FSCurveButtonSizeType) {
         super.init(frame: frame)
@@ -42,30 +41,29 @@ class FSCurveButton: UIButton {
         
         if curveType == FSCurveButtonSizeType.left {
         
-            CGPathMoveToPoint(path, nil)
+            path.move(to: CGPoint.init(x: 0, y: height))
             
+            path.addArc(tangent1End: CGPoint.init(x: 0, y: 0), tangent2End:  CGPoint.init(x: width, y: 0), radius: radius)
             
-            CGPathMoveToPoint(path, Nil, 0, height);
+            path.addLine(to: CGPoint.init(x: width, y: 0))
             
-            CGPathAddArcToPoint(path, nil, 0, 0, width, 0, radius);
+            path.addArc(tangent1End: CGPoint.init(x: width, y: height), tangent2End:  CGPoint.init(x: 0, y: height), radius: radius)
             
-            CGPathAddLineToPoint(path, nil, width, 0) ;
-            
-            CGPathAddArcToPoint(path, nil, width, height, 0, height, radius);
-            
-            CGPathAddLineToPoint(path, nil, 0, height);
+            path.addLine(to: CGPoint.init(x: 0, y: height))
             
         }else{
             
-            CGPathMoveToPoint(path, nil, 0, 0);
+            path.move(to: CGPoint.init(x: 0, y: 0))
             
-            CGPathAddArcToPoint(path, nil, width, 0, width, height, radius);
+            path.addArc(tangent1End: CGPoint.init(x: width, y: 0), tangent2End:  CGPoint.init(x: width, y: height), radius: radius)
             
-            CGPathAddLineToPoint(path, nil, width, height);
             
-            CGPathAddArcToPoint(path, nil, 0, height, 0, 0, radius);
+            path.addLine(to: CGPoint.init(x: width, y: height))
             
-            CGPathAddLineToPoint(path, nil, 0, 0);
+            path.addArc(tangent1End: CGPoint.init(x: 0, y: height), tangent2End:  CGPoint.init(x: 0, y: 0), radius: radius)
+            
+            path.addLine(to: CGPoint.init(x: 0, y: 0))
+
         }
         
         shapeLayer.path = path;
