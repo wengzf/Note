@@ -22,8 +22,7 @@ class FSCurveButton: UIButton {
         }
         set{
             shapeLayer.fillColor = newValue.cgColor
-            
-            
+        
         }
     }
     var shapeLayer = CAShapeLayer()

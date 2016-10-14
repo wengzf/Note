@@ -8,6 +8,7 @@
 
 import UIKit
 
+import CoreMotion
 
 
 class ViewController: UIViewController {
@@ -29,28 +30,76 @@ class ViewController: UIViewController {
     
     var count = 0
     
+    let motionManager = CMMotionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let property = UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width
+        var frame = UIScreen.main.bounds
+        
+        let width = CGFloat.init(25)
+        frame.size.width = UIScreen.main.bounds.size.width + width*2
+        frame.size.height = UIScreen.main.bounds.size.height + width*2*property
+        imgView1.frame = frame
+        imgView2.frame = frame
+        
+        
         // 添加背景图案，随机从准备好的三张图片中选取
         let num = Int(arc4random()%8)
-        let str = "\(num).jpg"
-        curImage = UIImage.init(named: str)!
-        imgView2.image = curImage
-        self.view.addSubview(imgView2)
-        
+        curImage = UIImage.init(named: "\(num).jpg")!
+        imgView1.contentMode = UIViewContentMode.scaleAspectFit
+        imgView2.contentMode = UIViewContentMode.scaleAspectFit
         imgView1.image = curImage
-        self.view.addSubview(imgView1)
+        imgView2.image = curImage
         
         // 添加按钮
         self.curveButtonInit()
         
-        // 更换背景定时器
-        let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: true)
-        timer.fire()
-
+        self.curveBtn0.isHidden = true
+        self.curveBtn1.isHidden = true
+        self.curveBtn2.isHidden = true
+        self.curveBtn3.isHidden = true
+        self.curveBtn4.isHidden = true
+        self.curveBtn5.alpha = 0
+        self.curveBtn6.alpha = 0
         
-        // 添加动画
+        // 更换背景定时器
+        let timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.timerAction) , userInfo: nil, repeats: false)
+//        timer.fire()
+
+        // 重力感应透视效果
+        motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion:CMDeviceMotion?, error:Error?) in
+            
+            if self.imgView2.superview==nil{
+                // addsubview放在这里防止开始调整重力位置时的突变
+                self.view.addSubview(self.imgView1)
+                self.view.addSubview(self.imgView2)
+                
+                self.view.sendSubview(toBack: self.imgView1)
+                self.view.sendSubview(toBack: self.imgView2)
+            }
+            
+            var point = CGPoint.init(x: -width, y: -width*property)
+            
+            point.x +=  self.clip(CGFloat(motion!.gravity.x))*CGFloat(width);
+            point.y +=  self.clip(CGFloat(motion!.gravity.y))*property*width;
+            
+            var frame = self.imgView1.frame
+            frame.origin = point
+            self.imgView1.frame = frame
+            self.imgView2.frame = frame
+        }
+    }
+    func clip(_ value:CGFloat) -> CGFloat
+    {
+        if value > 1.0{
+            return 1.0
+        }
+        if value < -1.0{
+            return -1.0
+        }
+        return value
     }
     
     
@@ -150,39 +199,39 @@ class ViewController: UIViewController {
 
         
         
-        animationDelay += 0.12
+        animationDelay += 0.12*1.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn1.bouceAnimation(0)
         }
         
-        animationDelay += 0.07
+        animationDelay += 0.07*1.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn3.bouceAnimation(0)
         }
         
-        animationDelay += 0.03
+        animationDelay += 0.03*1.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn2.bouceAnimation(0)
         }
         
-        animationDelay += 0.04
+        animationDelay += 0.04*1.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationDelay) {
             
             self.curveBtn4.bouceAnimation(0)
         }
         
-        animationDelay += 0.18
-        UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
+        animationDelay += 0.18*1.5
+        UIView.animate(withDuration: 0.1*1.5, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
             self.curveBtn5.alpha = 0.7
             }, completion: nil)
         
         
-        animationDelay += 0.10
+        animationDelay += 0.10*1.5
         
-        UIView.animate(withDuration: 0.1, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 0.1*1.5, delay: animationDelay, options: UIViewAnimationOptions(), animations: {
             self.curveBtn6.alpha = 0.8
             }, completion: nil)
 

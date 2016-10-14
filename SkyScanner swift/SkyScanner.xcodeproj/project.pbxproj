@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD04587B1DB0904B00A4044D /* FSDateButtonGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04587A1DB0904B00A4044D /* FSDateButtonGroupView.swift */; };
 		AD128C431D5D7220009D867F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD128C421D5D7220009D867F /* AppDelegate.swift */; };
 		AD128C451D5D7220009D867F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD128C441D5D7220009D867F /* ViewController.swift */; };
 		AD128C481D5D7220009D867F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD128C461D5D7220009D867F /* Main.storyboard */; };
@@ -25,9 +26,11 @@
 		AD7AAC1D1D892146003B3C0B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AAC1C1D892146003B3C0B /* UIViewExtension.swift */; };
 		AD7AAC211D8922CE003B3C0B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AAC201D8922CE003B3C0B /* UILabelExtension.swift */; };
 		AD7AAC231D892774003B3C0B /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AAC221D892774003B3C0B /* UIButtonExtension.swift */; };
+		ADF93CB61DAF30C2007165FF /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF93CB51DAF30C2007165FF /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD04587A1DB0904B00A4044D /* FSDateButtonGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSDateButtonGroupView.swift; sourceTree = "<group>"; };
 		AD128C3F1D5D7220009D867F /* SkyScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD128C421D5D7220009D867F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD128C441D5D7220009D867F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +51,8 @@
 		AD7AAC1C1D892146003B3C0B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		AD7AAC201D8922CE003B3C0B /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabelExtension.swift; path = ../UILabelExtension.swift; sourceTree = "<group>"; };
 		AD7AAC221D892774003B3C0B /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		ADE630621DB0749200937C1C /* Thinking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thinking.h; sourceTree = "<group>"; };
+		ADF93CB51DAF30C2007165FF /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF93CB61DAF30C2007165FF /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +72,7 @@
 			children = (
 				AD128C411D5D7220009D867F /* SkyScanner */,
 				AD128C401D5D7220009D867F /* Products */,
+				ADF93CB41DAF30C2007165FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +87,7 @@
 		AD128C411D5D7220009D867F /* SkyScanner */ = {
 			isa = PBXGroup;
 			children = (
+				ADE630621DB0749200937C1C /* Thinking.h */,
 				AD7AAC1C1D892146003B3C0B /* UIViewExtension.swift */,
 				AD7AAC201D8922CE003B3C0B /* UILabelExtension.swift */,
 				AD7AAC221D892774003B3C0B /* UIButtonExtension.swift */,
@@ -95,12 +103,21 @@
 				AD128C441D5D7220009D867F /* ViewController.swift */,
 				AD128C561D5D7383009D867F /* FSCurveButton.swift */,
 				AD7AAC1A1D891F37003B3C0B /* FSDateButtonView.swift */,
+				AD04587A1DB0904B00A4044D /* FSDateButtonGroupView.swift */,
 				AD128C461D5D7220009D867F /* Main.storyboard */,
 				AD128C491D5D7220009D867F /* Assets.xcassets */,
 				AD128C4B1D5D7220009D867F /* LaunchScreen.storyboard */,
 				AD128C4E1D5D7220009D867F /* Info.plist */,
 			);
 			path = SkyScanner;
+			sourceTree = "<group>";
+		};
+		ADF93CB41DAF30C2007165FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADF93CB51DAF30C2007165FF /* CoreMotion.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD7AAC1D1D892146003B3C0B /* UIViewExtension.swift in Sources */,
+				AD04587B1DB0904B00A4044D /* FSDateButtonGroupView.swift in Sources */,
 				AD128C451D5D7220009D867F /* ViewController.swift in Sources */,
 				AD128C571D5D7383009D867F /* FSCurveButton.swift in Sources */,
 				AD128C431D5D7220009D867F /* AppDelegate.swift in Sources */,

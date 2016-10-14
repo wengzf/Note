@@ -11,6 +11,6 @@ import UIKit
 extension UIButton
 {
     func setSelector(){
-        self
+        
     }
 }

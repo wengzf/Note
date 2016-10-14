@@ -106,15 +106,15 @@ extension UIView{
 extension UIView{
     func bouceAnimation(_ delay:double_t){
         
-        self.transform = CGAffineTransform(scaleX: 0.164/2, y: 0.164/2)
-        UIView.animate(withDuration: 0.13, delay: delay, options: UIViewAnimationOptions.curveLinear, animations: {
+        self.transform = CGAffineTransform(scaleX: 0.03, y: 0.03)
+        UIView.animate(withDuration: 0.13*1.5, delay: delay, options: UIViewAnimationOptions.curveLinear, animations: {
             self.isHidden = false
             self.transform =  CGAffineTransform(scaleX: 1.164, y: 1.164)
         }) { (flag:Bool) in
-            UIView.animate(withDuration: 0.05, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
+            UIView.animate(withDuration: 0.05*1.5, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
                 self.transform =  CGAffineTransform(scaleX: 0.91, y: 0.91)
             }) { (flag:Bool) in
-                UIView.animate(withDuration: 0.05, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
+                UIView.animate(withDuration: 0.05*1.5, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
                     self.transform =  CGAffineTransform.identity
                 }) { (flag:Bool) in
                     

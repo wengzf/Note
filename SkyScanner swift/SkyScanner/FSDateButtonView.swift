@@ -17,8 +17,6 @@ class FSDateButtonView: UIView {
     
     var btn = UIButton.init()
     
-    
-    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -29,17 +27,20 @@ class FSDateButtonView: UIView {
         
         //标题
         titleLabel.text = "日期"
+        self.addSubview(titleLabel)
 
         // 分割线
         deviderView.backgroundColor = UIColor.lightGray
+        self.addSubview(deviderView)
         
         // 时间label
         timeLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        self.addSubview(timeLabel)
         
         // 点击事件
         btn.frame = self.bounds
         btn.addTarget(self, action: #selector(btnClked), for: UIControlEvents.touchUpInside)
-        
+        self.addSubview(btn)
         
     }
     
