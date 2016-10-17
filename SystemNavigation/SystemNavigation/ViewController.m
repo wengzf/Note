@@ -68,6 +68,8 @@ typedef enum {
 
 @interface ViewController ()
 {
+    UIButton *btn1;
+    UIButton *btn2;
 }
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
@@ -127,9 +129,27 @@ typedef enum {
 //    [self.view addSubview:view];
 //    [view startAnimation];
     
-    VSCOAnimation *view = [[VSCOAnimation alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:view];
+    btn1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 500, 375, 60)];
+    btn1.backgroundColor = [UIColor redColor];
+    [btn1 addTarget:self action:@selector(btn1Clk) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn1];
     
+    [self btn1Clk];
+    
+    
+}
+
+- (void)btn1Clk
+{
+    static VSCOAnimation *view;
+    
+    if (view.superview) {
+        [view removeFromSuperview];
+        view = nil;
+    }
+    
+    view = [[VSCOAnimation alloc] initWithFrame:self.view.frame];
+    [self.view insertSubview:view belowSubview:btn1];
     
     [view startAnimation];
 }
